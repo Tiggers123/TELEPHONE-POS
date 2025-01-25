@@ -35,17 +35,20 @@ export default function Page() {
         taxCode: taxCode,
       };
 
-      await axios.post(`${config.apiUrl}/company/create`, payload);
-      Swal.fire({
-        icon: "success",
-        title: "บันทึกข้อมูลเรียบร้อย",
-        timer: 2000,
-      });
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "ผิดพลาด",
-        text: "ไม่สามารถบันทึกข้อมูลได้",
+       
+    await axios.post(`${config.apiUrl}/company/create`, payload);// ส่งคำขอแบบ POST ไปยัง API เพื่อบันทึกข้อมูล
+    // หากการบันทึกสำเร็จ จะแสดงข้อความแจ้งเตือนสำเร็จ
+    Swal.fire({
+      icon: "success",           // แสดงไอคอนสำเร็จ
+      title: "บันทึกข้อมูลเรียบร้อย", // ข้อความแจ้งเตือน
+      timer: 2000,               // เวลาที่แสดง (2 วินาที)
+    });
+  } catch (error) {
+    // หากมีข้อผิดพลาด จะเข้าสู่ส่วน catch และแสดงข้อความแจ้งเตือนข้อผิดพลาด
+    Swal.fire({
+      icon: "error",         // แสดงไอคอนข้อผิดพลาด
+      title: "ผิดพลาด",      // หัวข้อแจ้งเตือน
+      text: "ไม่สามารถบันทึกข้อมูลได้", // ข้อความเพิ่มเติม
       });
     }
   };
